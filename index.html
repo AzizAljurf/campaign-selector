@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="./styles.css" />
+        <title>Campaign Selector</title>
+    </head>
+    <body>
+        <!-- <div id="nameHover">
+            <h1>Test Store Name</h1>
+        </div> -->
+        <div id="header">
+            <div id="firstHeaderDiv">
+                <form enctype="multipart/form-data">
+                    <input id="upload" type="file" name="files[]" />
+                </form>
+                <div>
+                    <label id="floorLabel" for="floor"><h1>Floor:</h1></label>
+                    <input type="number" name="floor" id="floor" />
+                </div>
+                <button id="plot">Plot</button>
+            </div>
+            <div id="storeInfoContainer">
+                <h1>Floor: -</h1>
+                <h1>Brand ID: -</h1>
+                <h1>Store Name: -</h1>
+            </div>
+            <div id="clickedInfoContainer">
+                <div id="clickedInfo">
+                    <h1>Clicked: -</h1>
+                </div>
+                <div class="addCampaignContainer">
+                    <div id="addanddownload">
+                        <button id="addCampaign">Add</button>
+                        <button id="download">Download</button>
+                    </div>
+                    <label for="showAlert" style="word-wrap: break-word">
+                        Show Alert<input id="showAlert" type="checkbox" />
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="img-overlay-wrap">
+            <svg
+                id="plotBox"
+                xmlns="http://www.w3.org/2000/svg"
+                height="1000"
+                width="1000"
+            >
+                <!-- <image id="floorplan" href="" /> -->
+                <!-- <text id="nameHover" x="300" y="300" fill="red">
+                    I love SVG!
+                </text> -->
+            </svg>
+        </div>
+    </body>
+    <!-- <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.7/xlsx.min.js"
+        integrity="sha512-bSQSf5P+Fns1ATWz6BzmXgjdvrunMgInq2DDH98lUzkpoP9op83L9SIJMW0EyHidTm4E9ilm2EBMNL4coELqSw=="
+        crossorigin="anonymous"
+    ></script> -->
+    <!-- <script src="https://d3js.org/d3-dsv.v2.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v2.min.js"></script> -->
+    <!-- <script
+        lang="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.2/xlsx.full.min.js"
+    ></script>
+    <script
+        lang="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"
+    ></script> -->
+    <script src="https://unpkg.com/panzoom@9.2.4/dist/panzoom.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    <script>
+        var allData;
+        var ExcelToJSON = function () {
+            this.parseExcel = function (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var data = e.target.result;
+                    var workbook = XLSX.read(data, {
+                        type: "binary",
+                    });
+                    workbook.SheetNames.forEach(function (sheetName) {
+                        // Here is your object
+                        var XL_row_object = XLSX.utils.sheet_to_row_object_array(
+                            workbook.Sheets[sheetName]
+                        );
+                        var json_object = JSON.stringify(XL_row_object);
+                        allData = JSON.parse(json_object);
+                        /* console.log(JSON.parse(json_object));
+                        jQuery("#xlx_json").val(json_object); */
+                    });
+                };
+
+                reader.onerror = function (ex) {
+                    console.log(ex);
+                };
+
+                reader.readAsBinaryString(file);
+            };
+        };
+
+        function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+            var xl2json = new ExcelToJSON();
+            xl2json.parseExcel(files[0]);
+        }
+    </script>
+    <script>
+        document
+            .getElementById("upload")
+            .addEventListener("change", handleFileSelect, false);
+    </script>
+    <!-- <script lang="javascript" src="./FileSaver.min.js"></script> -->
+    <script
+        lang="javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"
+    ></script>
+    <script lang="javascript" src="./xlsx.full.min.js"></script>
+    <script src="./index.js"></script>
+</html>
