@@ -51,9 +51,9 @@ document.getElementById("download").addEventListener("click", () => {
 
     link.click(); // This will download the data file named "my_data.csv". */
     var wb = XLSX.utils.book_new();
-    wb.Props = {
+    /*     wb.Props = {
         Title: "Campaigns",
-    };
+    }; */
     wb.SheetNames.push("Test Sheet");
     var ws_data = rows;
     var ws = XLSX.utils.aoa_to_sheet(ws_data);
